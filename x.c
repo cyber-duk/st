@@ -271,6 +271,8 @@ static char *opt_title = NULL;
 
 static int oldbutton = 3; /* button event on startup: 3 = release */
 
+static int detach_session = 0;
+
 void
 clipcopy(const Arg *dummy)
 {
@@ -2184,6 +2186,9 @@ main(int argc, char *argv[])
 	case 'c':
 		opt_class = EARGF(usage());
 		break;
+        case 'd':
+                detach_session = 1;
+                break;
 	case 'e':
 		if (argc > 0)
 			--argc, ++argv;
@@ -2241,7 +2246,19 @@ run:
 	xinit(cols, rows);
 	xsetenv();
 	selinit();
-	run();
+
+        if (!detach_session) {
+	        run();
+        } else {
+                switch (fork()) {
+                        case -1:
+                                die("fork failed: %s\n", strerror(errno));
+                                break;
+                        case 0:
+                                setsid();
+                                run();
+                }
+        }
 
 	return 0;
 }
