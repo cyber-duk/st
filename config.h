@@ -5,11 +5,11 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Comic Mono:pixelsize=13:antialias=true:autohint=true";
+static char *font = "Dina:pixelsize=12:antialias=true:autohint=true";
 /* Spare fonts */
 static char *font2[] = {
-        "Iosevka Term:pixelsize=13:antialias=true:autohint=true",
-        "Noto Color Emoji:pixelsize=12:antialias=true:autohint=true",
+        "Iosevka Term:pixelsize=12:antialias=true:autohint=true",
+        "Noto Color Emoji:pixelsize=10:antialias=true:autohint=true",
 };
 
 static int borderpx = 10;
